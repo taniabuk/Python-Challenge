@@ -10,6 +10,9 @@ current_total = 0
 current_candidate = 0
 winner = 0
 
+f = open('PollTotals.txt', 'w+')
+f = open('PollTotals.txt', 'r+')
+
 currentDir = os.getcwd()
 
 csvfile = os.path.join(currentDir, 'election_data.csv')
@@ -34,6 +37,11 @@ print("-------------------------------")
 print("Total Votes:", total)
 print("-------------------------------")
 
+f.write("Election Results \n")
+f.write("------------------------ \n")
+f.write(f'Total Votes: {total} \n') 
+f.write("------------------------ \n")
+
 #Sorting Candidate column
 candidates.sort() 
 
@@ -46,6 +54,8 @@ for i in range (1, len(candidates)):
         current_total = current_total + 1
     else:
         print(current_candidate, ": ", round(100*(current_total) / total, 2), "%", "(", current_total, ")")
+        f.write(f'{current_candidate}: {round(100*(current_total) / total, 2)}% ({current_total}) \n')
+        #f.write(f'Greatest Decrease in Profits: {min_date}, (${min_change}).\n')
 #Finding Winner       
         if current_total > max_total:
             winner = current_candidate
@@ -53,6 +63,7 @@ for i in range (1, len(candidates)):
         current_candidate = candidates [i]
         current_total = 1
 print(current_candidate, ": ", round(100*(current_total) / total, 2), "%", "(", current_total, ")")
+f.write(f'{current_candidate}: {round(100*(current_total) / total, 2)}% ({current_total}) \n')
 
 if current_total > max_total:
     winner = current_candidate
@@ -61,3 +72,9 @@ if current_total > max_total:
 print("-------------------------------")
 print("Winner: ", winner)
 print("-------------------------------")
+
+f.write('------------------------ \n')
+f.write(f'Winner: {winner} \n')
+f.write('------------------------ \n')
+
+f.close() 
