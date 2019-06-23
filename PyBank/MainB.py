@@ -58,3 +58,13 @@ print("Average Change: $", average_change)
 print("Greatest Increase in Profits: ", max_date, "($",max_change,")")
 print("Greatest Decrease in Profits: ", min_date, "($",min_change,")")
 
+f = open('BankTotals.txt', 'r+') 
+ 
+f.write("Financial Analysis \n")
+f.write("+++++++++++++++++++++++ \n")
+f.write(f'Total Months: {total_date}.\n')
+f.write(f'Total: ${total} \n')
+f.write(f'Average Change: ${average_change}.\n')
+f.write(f'Greatest Increase in Profits: {max_date}, (${max_change}).\n')
+f.write(f'Greatest Decrease in Profits: {min_date}, (${min_change}).\n')
+f.close() 
